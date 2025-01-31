@@ -28,6 +28,7 @@ game_running = True
 last_pos = None
 food = Food()
 scoreboard = Scoreboard()
+
 while game_running:
     screen.update()
     time.sleep(0.1)
@@ -40,14 +41,14 @@ while game_running:
     # Wall Collision
     if snake.head.xcor() > 280 or snake.head.xcor() < -280 or snake.head.ycor() > 280 or snake.head.ycor() < -280:
         print("Snake hit the wall")
-        game_running = False
         scoreboard.gameover()
         screen.update()
+        snake.reset()
     # Tail Collision
     for body_part in snake.body[1:]:
         if snake.head.distance(body_part) < 10:
-            game_running = False
             scoreboard.gameover()
             screen.update()
+            snake.reset()
 
 screen.exitonclick()

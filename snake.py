@@ -1,6 +1,7 @@
 from turtle import Turtle
 
 DEFAULT_SPEED_AND_OFFSET = 20
+DEFAULT_LENGTH = 3
 
 class Snake:
     def __init__(self, length):
@@ -51,3 +52,13 @@ class Snake:
         body_part.penup()
         body_part.goto(self.body[-1].position())
         self.body.append(body_part)
+
+    def reset(self):
+        for body_part in self.body:
+            body_part.hideturtle()
+        self.length = DEFAULT_LENGTH
+        self.body = []
+        self.next_body_offset = 0
+        self.heading = 0
+        self.spawn()
+        self.head = self.body[0]
